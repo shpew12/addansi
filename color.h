@@ -2,8 +2,6 @@
 #include <cstdarg>
 #include <iostream>
 
-using namespace std;
-
 template <unsigned int n>
 struct BG {
     enum { code = n + 40 };
@@ -32,20 +30,20 @@ struct RM<1> {
 enum { black,red,green,brown,blue,magenta,cyan,white };
 enum { clear,bold,dim,underline=4,blink,highlight=7,reset=10};
 
-#define r red
-#define y brown
-#define g green
-#define b blue
-#define c cyan
-#define m magenta
-#define k black
-#define w white
+const int r = red;
+const int y = brown;
+const int g = green;
+const int b = blue;
+const int c = cyan;
+const int m = magenta;
+const int k = black;
+const int w = white;
 
-#define dm dim
-#define ul underline
-#define hl highlight
-#define bo bold
-#define bk blink
+const int dm = dim;
+const int ul = underline;
+const int hl = highlight;
+const int bo = bold;
+const int bk = blink;
 
 #define cl at(clear)
 
@@ -56,9 +54,9 @@ enum { clear,bold,dim,underline=4,blink,highlight=7,reset=10};
 #define at(x) W(AT<x>::code)
 #define rm(x) W(RM<x>::code)
 
-#define clendl cl endl
+#define clendl cl std::endl
 
 
-string wrap(int code){
-    return "\e[" + to_string(code) + "m";
+std::string wrap(int code){
+    return "\e[" + std::to_string(code) + "m";
 }
