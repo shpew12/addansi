@@ -1,48 +1,33 @@
 #include <string>
 #include <cstdarg>
+#include <iostream>
 
 using namespace std;
 
 template <unsigned int n>
-struct bg {
+struct BG {
     enum { code = n + 40 };
 };
 
 template <unsigned int n>
-struct fg {
+struct FG {
     enum { code = n + 30 };
 };
 
 template <unsigned int n>
-struct attr {
+struct AT {
     enum { code = n };
 };
 
 template <unsigned int n>
-struct cancel {
+struct RM {
     enum { code = n + 20 };
 };
 
-template <unsigned int n>
-struct bright {
-    enum { code = n + 8 };
+template<>
+struct RM<1> {
+    enum { code = 22 };
 };
-
-#define CLEAR       0
-#define BOLD        1
-#define DIM         2
-#define UNDERLINE   4
-#define BLINK       5
-#define HIGHLIGHT   7
-#define RESET       10
-
-#define d dim 
-#define u underline
-#define h highlight 
-#define cl clear 
-#define re reset
-#define bo bold
-#define bk blink 
 
 enum { black,red,green,brown,blue,magenta,cyan,white };
 enum { clear,bold,dim,underline=4,blink,highlight=7,reset=10};
@@ -56,14 +41,24 @@ enum { clear,bold,dim,underline=4,blink,highlight=7,reset=10};
 #define k black
 #define w white
 
-#define WRAP(x) wrap(x)
-#define FG(x) WRAP(fg<x>::code)
-#define BG(x) WRAP(bg<x>::code)
-#define AT(x) WRAP(attr<x>::code)
-#define CL(x)  WRAP(cancel<x>::code)
-#define BT(x)  WRAP(bright<x>::code)
+#define dm dim
+#define ul underline
+#define hl highlight
+#define bo bold
+#define bk blink
 
-string wrap(int code) {
-    return "\e["+to_string(code)+"m";
+#define cl at(clear)
+
+#define W(x) wrap(x) <<
+
+#define fg(x) W(FG<x>::code)
+#define bg(x) W(BG<x>::code)
+#define at(x) W(AT<x>::code)
+#define rm(x) W(RM<x>::code)
+
+#define clendl cl endl
+
+
+string wrap(int code){
+    return "\e[" + to_string(code) + "m";
 }
-
