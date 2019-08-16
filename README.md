@@ -38,7 +38,7 @@ You can set the color of the foreground or background, as well as certain attrib
  bk  | blink     
 
 ### Other 
- Key |            
+ Key | _           
 -----|------------
  cl  | clear(all) 
 
