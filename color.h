@@ -1,6 +1,11 @@
+#ifndef ADDANSI_COLOR_H_
+#define ADDANSI_COLOR_H_
+
 #include <string>
 #include <cstdarg>
 #include <iostream>
+
+namespace addansi {
 
 template <unsigned int n>
 struct BG {
@@ -60,3 +65,7 @@ const int bk = blink;
 std::string wrap(int code){
     return "\e[" + std::to_string(code) + "m";
 }
+
+} // namespace addansi
+
+#endif // ADDANSI_COLOR_H_
